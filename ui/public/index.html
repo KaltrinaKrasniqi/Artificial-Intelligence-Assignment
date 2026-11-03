@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search Lab · Inteligjencë Artificiale</title>
+  <meta name="description" content="Eksperimente lokale me kërkim të painformuar: Latin Square, Sudoku dhe Social Golfers.">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/assets/app.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#latin"><span class="brand-mark" aria-hidden="true">▦</span><span>Search<span class="brand-light">Lab</span><small>ARTIFICIAL INTELLIGENCE</small></span></a>
+    <div class="nav-caption">PROBLEMET</div>
+    <nav aria-label="Problemet e projektit">
+      <button type="button" class="nav-item active" data-tab="latin"><span class="nav-icon">▦</span><span>Latin Square<small>IDDFS & Backtracking</small></span><span class="nav-index">01</span></button>
+      <button type="button" class="nav-item" data-tab="sudoku"><span class="nav-icon">▤</span><span>Sudoku<small>BFS & Backtracking</small></span><span class="nav-index">02</span></button>
+      <button type="button" class="nav-item" data-tab="golfers"><span class="nav-icon">◎</span><span>Social Golfers<small>DFS & Backtracking</small></span><span class="nav-index">03</span></button>
+    </nav>
+    <div class="sidebar-note"><span class="eyebrow">DETYRA SEMESTRALE 1</span><p>Një hapësirë për të eksploruar zgjidhjet dhe punën e algoritmeve.</p></div>
+    <div class="connection"><span id="connection-dot" class="dot"></span><span id="connection">Duke u lidhur…</span><span class="local-badge">LOCAL</span></div>
+  </aside>
+  <main>
+    <header class="topbar"><span>Laboratori <span class="slash">/</span> Kërkim i painformuar</span><span class="course-tag">AI · 2026/27</span></header>
+    <section class="workspace">
+      <div class="page-heading"><div><div class="eyebrow" id="problem-eyebrow">01 / GJENERIM TABELASH</div><h1 id="problem-title">Latin Square</h1><p id="problem-description">Çdo numër, saktësisht një herë në çdo rresht dhe kolonë.</p></div><span class="engine-badge"><span class="dot green"></span>Algoritme C++</span></div>
+      <div class="experiment">
+        <section class="panel controls-panel" aria-label="Konfigurimi i eksperimentit">
+          <div class="panel-heading"><h2>Konfiguro eksperimentin</h2><span class="tiny-label">HYRJA</span></div>
+          <form id="solve-form">
+            <div id="latin-controls" class="control-section">
+              <label for="latin-size">Madhësia e katrorit</label><div class="size-row"><input id="latin-size" type="number" min="1" max="8" value="5"><span id="latin-size-label">5 × 5</span></div>
+              <label for="latin-algorithm">Algoritmi</label><select id="latin-algorithm"><option value="iddfs">IDDFS me Backtracking</option><option value="backtracking">DFS me Backtracking · krahasim</option></select>
+              <p class="field-hint">Rreshti dhe kolona e parë fiksohen nga simetria. IDDFS provon kufij thellësie në rritje.</p>
+              <div class="mini-note">Për n = 7 ose 8, IDDFS mund të arrijë kufirin prej 2 milionë vizitash.</div>
+            </div>
+            <div id="sudoku-controls" class="control-section" hidden>
+              <label for="sudoku-level">Shembulli fillestar</label><select id="sudoku-level"><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option><option value="custom">Tabelë e personalizuar</option></select>
+              <p class="field-hint">Mund t'i ndryshosh numrat drejtpërdrejt në tabelë. Nivelet janë etiketa demonstrative.</p>
+              <label for="sudoku-algorithm">Algoritmi</label><select id="sudoku-algorithm"><option value="bfs">Breadth First Search · FIFO</option><option value="backtracking">DFS me Backtracking · krahasim</option></select>
+              <label for="sudoku-budget">Kufiri i nyjeve / radhës</label><select id="sudoku-budget"><option value="200000">200 000</option><option value="2000000">2 000 000</option><option value="5000000">5 000 000</option></select>
+              <div class="mini-note">BFS eksploron nivel pas niveli dhe braktis degët pa vazhdim. Backtracking rekursiv ofrohet veçmas.</div>
+            </div>
+            <div id="golfers-controls" class="control-section" hidden>
+              <div class="two-fields"><div><label for="golf-g">Grupet</label><input id="golf-g" type="number" min="1" max="16" value="8"></div><div><label for="golf-p">Lojtarë / grup</label><input id="golf-p" type="number" min="1" max="8" value="4"></div></div>
+              <label for="golf-w">Javët e kërkuara</label><input id="golf-w" type="number" min="1" max="16" value="3">
+              <div class="config-summary"><span>Gjithsej lojtarë</span><strong id="golf-total">32</strong></div>
+              <label for="golf-budget">Kufiri i vizitave</label><select id="golf-budget"><option value="2000000">2 000 000</option><option value="20000000">20 000 000</option></select>
+              <div class="mini-note" id="golf-mode">DFS/backtracking i përgjithshëm me kontrolle kufizimesh.</div>
+            </div>
+            <details class="advanced"><summary>Kufiri kohor i këtij eksperimenti</summary><label for="time-limit">Sekonda</label><input id="time-limit" type="number" min="5" max="120" value="30"><p class="field-hint">Vlen vetëm për ekzekutimin e nisur këtu, jo për eksperimentin në sfond.</p></details>
+            <button class="primary-button" id="solve-button" type="submit"><span aria-hidden="true">▷</span> Ekzekuto algoritmin</button>
+            <button class="secondary-button" id="reset-button" type="button">Rikthe hyrjen</button>
+            <button class="secondary-button" id="cancel-button" type="button" hidden>Ndalo këtë eksperiment</button>
+            <div id="form-error" class="error-message" role="alert" hidden></div>
+          </form>
+          <div class="constraint-heading">RREGULLAT E ZGJIDHJES</div><ul id="constraint-list" class="constraint-list"></ul>
+        </section>
+        <section class="panel result-panel" aria-label="Vizualizimi i problemit">
+          <div class="result-heading"><div><h2 id="board-title">Tabela e problemit</h2><span id="board-subtitle" class="field-hint">Numrat e fiksuar dallohen nga qelizat që plotësohen.</span></div><span id="status-badge" class="status-badge">Gati</span></div>
+          <div id="run-banner" class="run-banner" aria-live="polite" hidden></div>
+          <div class="board-area"><div id="grid-board" class="grid-board" role="group" aria-label="Tabela"></div><div id="golf-board" class="golf-board" hidden></div></div>
+          <div id="golf-week-controls" class="week-controls" hidden><button type="button" id="previous-week" class="icon-button" aria-label="Java e mëparshme">←</button><span id="week-label">Java 1</span><input id="week-range" type="range" min="1" max="3" value="1" aria-label="Zgjidh javën"><button type="button" id="next-week" class="icon-button" aria-label="Java tjetër">→</button></div>
+          <div class="board-footer"><span id="board-legend"><i class="legend-mark"></i> Qelizë e fiksuar</span><span id="board-count">25 qeliza</span></div>
+          <div id="presentation" class="presentation" hidden><div><strong>Shfaqja e zgjidhjes</strong><small>Paraqitje graduale e rezultatit, jo gjurmë e kërkimit.</small></div><div class="presentation-buttons"><button type="button" id="play" class="small-button">Luaj</button><button type="button" id="next-step" class="small-button">Rreshti tjetër</button><button type="button" id="show-all" class="small-button">Shfaq të gjitha</button></div></div>
+        </section>
+      </div>
+      <section class="metrics" aria-label="Statistikat e ekzekutimit">
+        <div class="metric"><span>Koha e kërkimit C++</span><strong id="metric-time">—</strong><small>Pa kohën e shfaqjes</small></div>
+        <div class="metric"><span>Nyje të vizituara</span><strong id="metric-nodes">—</strong><small>Siç numërohen nga solver-i</small></div>
+        <div class="metric"><span id="metric-third-title">Iteracione IDDFS</span><strong id="metric-third">—</strong><small id="metric-third-hint">Kufij thellësie të provuar</small></div>
+        <div class="metric validation-metric"><span>Verifikimi i zgjidhjes</span><strong id="metric-validation">Në pritje</strong><small id="metric-validation-hint">Kontroll i pavarur i kufizimeve</small></div>
+      </section>
+      <section id="long-run-panel" class="long-run-panel" hidden><div><span class="eyebrow">EKSPERIMENTI I VEÇANTË NË SFOND</span><h2>DFS i përgjithshëm · 32 lojtarë</h2><p id="long-run-message">Duke lexuar statusin…</p></div><button type="button" id="show-eight" class="secondary-button" hidden>Shfaq orarin e verifikuar për 8 javë</button></section>
+      <details id="raw-panel" class="raw-panel" hidden><summary>Dalja origjinale e programit</summary><pre id="raw-output"></pre><button type="button" id="download" class="small-button">Shkarko rezultatin JSON</button></details>
+      <footer class="page-footer"><span>Search Lab · Detyra 1</span><span>Rezultate reale nga programet lokale. Pa ndryshime në algoritmet C++.</span></footer>
+    </section>
+  </main>
+</body>
+</html>
