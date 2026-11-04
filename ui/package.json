@@ -9,5 +9,7 @@
     "dev": "npm run build && npm start",
     "test": "node --test test/server.test.mjs"
   },
-  "devDependencies": { "typescript": "5.9.3" }
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
 }
