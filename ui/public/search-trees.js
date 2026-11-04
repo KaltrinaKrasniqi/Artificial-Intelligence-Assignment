@@ -65,7 +65,7 @@ function draw(reset=false){
 }
 async function load(){$('png').disabled=true;stop();const request=++loadId;key=$('problem').value;step=0;$('explanation').textContent='Loading recorded search…';
   try{const response=await fetch(`/search-tree-data/${key}.json`);if(!response.ok)throw Error('Could not load recorded search.');const data=await response.json();if(request!==loadId)return;trace=data;
-    $('pdf').href=`/search-tree-reports/${names[key]}.pdf`;$('model').textContent=models[key];
+    $('model').textContent=models[key];
     const s=trace.summary;$('statistics').textContent=key==='workforce'?`Verified run: ${s.visited} valid DFS calls, ${s.attempts} assignments tried, ${s.backtracks} backtracks. Solution: 28 assignments.`:`Verified run: ${s.visited} processed states, ${s.discovered} unique discovered states, ${s.attempts} attempted transitions. Shortest solution: ${trace.path.length-1} moves.`;
     $('scope').textContent=key==='workforce'?'This is the confirmed four-employee educational model. The display follows the returned branch and its attempted alternatives, not every internal DFS call.':'Green marks the final solution retrospectively. Invalid and repeated attempts are drawn for explanation, but never enqueued. Counts depend on the fixed action order and goal-check timing.';draw(true);
   }catch(e){$('explanation').textContent=e.message;}

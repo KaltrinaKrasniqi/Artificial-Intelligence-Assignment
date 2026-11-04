@@ -177,6 +177,8 @@ Bitwise AND:      {2, 5}     -> 00100100
 
 One bitwise AND filters many candidates at once. C++ performs this directly on integer values, reducing the work per search node. This optimizes set operations, while the algorithm remains DFS with backtracking. Larger player sets use multiple 64-bit words; actual speed gains depend on the instance and machine.
 
+**Complexity (DFS, worst case):** time $O(b^m)$; standard search space $O(bm)$, where $b$ is the maximum branching factor and $m$ the maximum search depth; problem-state storage is additional.
+
 ## 2. Sudoku
 
 ### 2.1 Problem model
@@ -260,6 +262,8 @@ $$
 
 For the built-in `easy` board, $\log_{10} N \approx 23.3815$, so $N \approx 10^{23.3815}$. Column and box violations are still possible. If no row has two blank cells, no permitted swap neighbor exists.
 
+**Complexity (BFS, worst case):** time and space $O(b^d)$, where $b$ is the maximum branching factor and $d$ the shallowest solution depth; space counts queued states.
+
 ## 3. Latin Square
 
 ### 3.1 Problem model
@@ -328,6 +332,8 @@ N = (4!)^4 = 24^4 = 331\,776 \approx 10^{5.520845}
 $$
 
 These candidates can still violate columns. For $n<3$, a row has fewer than two unfixed cells, so no such swap exists.
+
+**Complexity (IDDFS, worst case, $b>1$):** time $O(b^d)$; standard search space $O(bd)$, where $b$ is the maximum branching factor and $d$ the shallowest solution depth; problem-state storage is additional.
 
 ## 4. Measured landscape results
 
@@ -426,4 +432,4 @@ npm start
 
 Open [http://127.0.0.1:8787/](http://127.0.0.1:8787/). Keep the terminal open; press `Ctrl+C` to stop.
 
-The UI runs the C++ programs from `bin`, displays validated solutions, and includes interactive Search Trees with PDF and PNG downloads. No `npm install` is needed to run the supplied UI.
+The UI runs the C++ programs from `bin`, displays validated solutions, and includes interactive Search Trees with PNG downloads. No `npm install` is needed to run the supplied UI.

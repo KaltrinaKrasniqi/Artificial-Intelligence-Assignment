@@ -1,0 +1,2 @@
+# Generated search-tree reports are excluded from language statistics.
+/search_trees/generated/** linguist-generated=true

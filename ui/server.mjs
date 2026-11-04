@@ -163,20 +163,16 @@ const server = http.createServer(async (req, res) => {
       if (req.method === 'GET' && !match[2]) return json(res, 200, publicJob(job));
     }
 
-    // Explicit files only: recorded trees and PDFs, with no search execution.
+    // Explicit files only: recorded tree data, with no search execution.
     const treeDownloads = new Map([
       ['/search-tree-data/puzzle.json', ['puzzle-report-trace.json', 'application/json']],
       ['/search-tree-data/river.json', ['river-report-trace.json', 'application/json']],
       ['/search-tree-data/workforce.json', ['workforce-report-trace.json', 'application/json']],
-      ['/search-tree-reports/8-puzzle-report.pdf', ['8-puzzle-report.pdf', 'application/pdf']],
-      ['/search-tree-reports/missionaries-and-cannibals-report.pdf', ['missionaries-and-cannibals-report.pdf', 'application/pdf']],
-      ['/search-tree-reports/rotating-workforce-report.pdf', ['rotating-workforce-report.pdf', 'application/pdf']],
     ]);
     if (req.method === 'GET' && treeDownloads.has(url.pathname)) {
       const [file, type] = treeDownloads.get(url.pathname);
-      const data = await readFile(path.join(projectRoot, 'search_trees', type === 'application/json' ? 'generated' : 'pdfs', file));
-      res.writeHead(200, { 'Content-Type': type, 'Cache-Control': 'no-store',
-        ...(type === 'application/pdf' ? { 'Content-Disposition': `attachment; filename="${file}"` } : {}) });
+      const data = await readFile(path.join(projectRoot, 'search_trees', 'generated', file));
+      res.writeHead(200, { 'Content-Type': type, 'Cache-Control': 'no-store', });
       return res.end(data);
     }
     if (req.method === 'GET' && staticFiles.has(url.pathname)) {
