@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  />
+  <title>Search Trees · Uninformed Search Techniques</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: #f3f6f8;
+      color: #193644;
+      font:
+        15px/1.6 system-ui,
+        sans-serif;
+    }
+    main {
+      max-width: 1500px;
+      margin: auto;
+      padding: 30px;
+    }
+    h1 {
+      margin: 4px 0;
+      font-size: 30px;
+    }
+    h2 {
+      font-size: 19px;
+      margin: 0 0 10px;
+    }
+    p {
+      max-width: 100ch;
+    }
+    small {
+      color: #607480;
+    }
+    nav,
+    .tools,
+    .legend {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+    button,
+    a.button {
+      padding: 10px 15px;
+      border: 1px solid #ccd9df;
+      border-radius: 8px;
+      background: white;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    button[aria-pressed="true"],
+    button.primary {
+      background: #1e656b;
+      color: white;
+      border-color: #1e656b;
+    }
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #53a4ae;
+      outline-offset: 3px;
+    }
+    .panel {
+      border: 1px solid #dbe4e8;
+      border-radius: 12px;
+      background: white;
+      padding: 22px;
+      margin-top: 18px;
+    }
+    .legend span {
+      padding: 4px 10px;
+      border-radius: 5px;
+      border: 1px solid #dbe4e8;
+    }
+    .legend .path {
+      background: #e6f5e9;
+    }
+    .legend .invalid {
+      background: #ffeded;
+    }
+    .legend .repeat {
+      background: #fff4d4;
+    }
+    .legend .cutoff {
+      border-style: dashed;
+    }
+    #viewport {
+      height: 650px;
+      overflow: auto;
+      background: white;
+      border: 1px solid #dbe4e8;
+      border-radius: 8px;
+      position: relative;
+    }
+    #drawing {
+      transform-origin: top left;
+    }
+    #drawing svg {
+      display: block;
+      max-width: none;
+    }
+    .tree-node {
+      cursor: pointer;
+    }
+    .tree-node:hover rect {
+      stroke-width: 3;
+    }
+    #node-info {
+      white-space: pre-wrap;
+      margin-top: 12px;
+      background: #f0f5f8;
+      padding: 14px;
+      border-radius: 8px;
+      min-height: 65px;
+    }
+    #steps {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    #steps pre {
+      margin: 0;
+      background: #f0f5f8;
+      padding: 15px;
+      font: 18px/1.6 monospace;
+      border-radius: 8px;
+    }
+    #steps .step {
+      padding: 10px;
+      border: 1px solid #dbe4e8;
+      border-radius: 8px;
+    }
+    .shift {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      background: #e6f0f3;
+      border-radius: 5px;
+      margin: 3px;
+    }
+    .shift.pending {
+      background: #f3f4f5;
+      color: #a4adb3;
+    }
+    .metrics {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+    .note {
+      color: #6e5725;
+      background: #fff8e8;
+      padding: 12px;
+      border-radius: 8px;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    th,
+    td {
+      padding: 8px;
+      border-bottom: 1px solid #e1e8eb;
+      text-align: left;
+    }
+    @media (max-width: 650px) {
+      main {
+        padding: 16px;
+      }
+      #viewport {
+        height: 500px;
+      }
+      .panel {
+        padding: 15px;
+      }
+    }
+    #viewport.compact {
+      height: auto;
+      min-height: 300px;
+      max-height: 600px;
+    }
+    #page-controls {
+      padding: 12px;
+      background: #eaf3f5;
+      border-radius: 8px;
+    }
+    select {
+      font: inherit;
+      padding: 8px;
+      max-width: 100%;
+    }
+  </style>
+  <main>
+    <small>ARTIFICIAL INTELLIGENCE · ASSIGNMENT 1</small>
+    <h1>Search trees</h1>
+    <p>
+      Generated from legal transitions and independently checked solution paths.
+      Explore a node, zoom the tree, or inspect the solution one step at a time.
+    </p>
+    <nav aria-label="Choose a problem">
+      <button data-problem="puzzle" aria-pressed="true">8-Puzzle</button
+      ><button data-problem="river" aria-pressed="false">
+        Missionaries and Cannibals</button
+      ><button data-problem="workforce" aria-pressed="false">
+        Rotating Workforce
+      </button>
+    </nav>
+    <section class="panel">
+      <h2 id="title"></h2>
+      <p id="subtitle"></p>
+      <p id="model"></p>
+      <div class="metrics" id="metrics"></div>
+      <div class="legend">
+        <span class="path">Green: solution path / workforce prefix</span
+        ><span class="invalid">Red: invalid attempt</span
+        ><span class="repeat">Yellow: repeated state</span
+        ><span class="cutoff">Dashed: display cutoff</span>
+      </div>
+      <div class="tools">
+        <button id="compact-view" aria-pressed="true">Compact pages</button>
+        <button id="full-view" aria-pressed="false">Full tree</button>
+        <a class="button" id="print-pages" target="_blank">All pages / Print</a>
+      </div>
+      <div class="tools" id="page-controls">
+        <button id="tree-previous">Previous page</button>
+        <span id="tree-page" aria-live="polite"></span>
+        <button id="tree-next" class="primary">Next page</button>
+        <select id="page-select" aria-label="Choose an expansion page"></select>
+      </div>
+      <div class="tools">
+        <label
+          >Zoom <input id="zoom" type="range" min="10" max="150" value="60" />
+          <output id="zoom-label">60%</output></label
+        ><button id="fit">Fit width</button
+        ><a class="button" id="download-svg" download>Download SVG</a
+        ><a class="button" href="verification.json">Verification report</a>
+      </div>
+      <div id="viewport" tabindex="0" aria-label="Scrollable search tree">
+        <div id="drawing"></div>
+      </div>
+      <div id="node-info" aria-live="polite">
+        Click a node to see its state and pruning reason.
+      </div>
+    </section>
+    <section class="panel">
+      <h2 id="solution-title">Verified shortest solution</h2>
+      <div class="tools">
+        <button id="previous">Previous step</button
+        ><button id="next" class="primary">Next step</button
+        ><button id="all">Show full solution</button
+        ><span id="step-count"></span>
+      </div>
+      <div id="steps"></div>
+      <p class="note" id="solution-note"></p>
+    </section>
+    <section class="panel">
+      <h2>How to read the tree</h2>
+      <ol>
+        <li>
+          Each node is one state; each edge labels the action taken from its
+          parent.
+        </li>
+        <li>
+          IDs follow breadth-first generation in the displayed tree. A repeated
+          state points to the earlier discovery ID and is not expanded again.
+        </li>
+        <li>
+          Invalid attempted actions are shown for explanation; a legal search
+          would discard them.
+        </li>
+        <li>
+          A depth cutoff means the rest of that subtree is omitted from this
+          picture. It is not proof of failure.
+        </li>
+      </ol>
+      <p>
+        Node colors identify status, not a heuristic score. The graph of all
+        states can contain cycles; this is a discovery tree with repeat leaves,
+        not a claim that the underlying state graph is a tree.
+      </p>
+    </section>
+  </main>
+  <script>
+    /* TREE_DATA */
+    const models = {
+      puzzle:
+        "State: 9 tiles in row order; 0 is the blank. Start: 123 / 046 / 758. Goal: 123 / 456 / 780. Successor order: Up, Down, Left, Right; off-board moves are not generated. All moves cost 1.",
+      river:
+        "State: (missionaries on left, cannibals on left, boat side). Start (3,3,L), goal (0,0,R). Boat carries 1–2 people. On either bank with missionaries, cannibals cannot outnumber them. Passenger order: 1M, 2M, 1C, 2C, 1M1C. Red leaves include impossible loads and unsafe banks.",
+      workforce:
+        "Confirmed educational instance, not a universal RWS specification: 4 employees, 7 weekdays, a shared 28-day cyclic sequence, shifts D/A/N/O. Mon–Sat: one of each shift; Sun: D=1,A=0,N=1,O=2. Work blocks: 2–6 days; rest blocks: 1–3; N→D forbidden. All block and transition rules include the cycle boundary. Employee e in week w uses sequence week (e+w) mod 4. This is a rotation of one common sequence, not four independent schedules.",
+    };
+    let selected = "puzzle",
+      step = 0,
+      page = 0,
+      view = "compact";
+    const get = (id) => document.getElementById(id);
+    function scaleTree() {
+      const svg = get("drawing").querySelector("svg");
+      const scale = Number(get("zoom").value) / 100;
+      get("drawing").style.width =
+        Number(svg.getAttribute("width")) * scale + "px";
+      get("drawing").style.height =
+        Number(svg.getAttribute("height")) * scale + "px";
+      svg.style.transformOrigin = "top left";
+      svg.style.transform = "none";
+      svg.style.width = Number(svg.getAttribute("width")) * scale + "px";
+      svg.style.height = Number(svg.getAttribute("height")) * scale + "px";
+      get("zoom-label").textContent = Math.round(scale * 100) + "%";
+    }
+    function render(reset = true) {
+      const item = data[selected];
+      if (reset) page = 0;
+      get("title").textContent = item.title;
+      get("subtitle").textContent = item.subtitle;
+      get("model").textContent = models[selected];
+      const compact = view === "compact";
+      get("drawing").innerHTML = compact ? item.pages[page].svg : item.svg;
+      get("viewport").classList.toggle("compact", compact);
+      get("page-controls").hidden = !compact;
+      get("compact-view").setAttribute("aria-pressed", String(compact));
+      get("full-view").setAttribute("aria-pressed", String(!compact));
+      get("tree-page").textContent =
+        `Page ${page + 1} / ${item.pages.length} · node #${item.pages[page].parent}`;
+      get("tree-previous").disabled = page === 0;
+      get("tree-next").disabled = page === item.pages.length - 1;
+      get("print-pages").href = selected + "_pages/index.html";
+      get("page-select").replaceChildren(
+        ...item.pages.map(
+          (p, i) =>
+            new Option(
+              `Page ${i + 1} · node #${p.parent} · depth ${p.depth}`,
+              String(i),
+            ),
+        ),
+      );
+      get("page-select").value = String(page);
+      get("viewport").scrollTo(0, 0);
+      get("download-svg").href = compact
+        ? item.pages[page].file
+        : selected + "_tree.svg";
+      get("node-info").textContent =
+        "Click a node to see its state and pruning reason.";
+      get("metrics").textContent =
+        `${item.nodes.length} nodes drawn · ${item.nodes.filter((n) => n.kind === "repeat").length} repeats · ${item.nodes.filter((n) => n.kind === "invalid").length} invalid attempts`;
+      document
+        .querySelectorAll("[data-problem]")
+        .forEach((button) =>
+          button.setAttribute(
+            "aria-pressed",
+            String(button.dataset.problem === selected),
+          ),
+        );
+      get("drawing")
+        .querySelectorAll("[data-node]")
+        .forEach((group) =>
+          group.addEventListener("click", () => {
+            const node = item.nodes[Number(group.dataset.node)];
+            get("node-info").textContent =
+              `Node #${node.id} · depth ${node.depth}\nState: ${JSON.stringify(node.state)}\nStatus: ${node.kind}\n${node.reason || ""}`;
+          }),
+        );
+      if (reset) step = 0;
+      get("zoom").value = compact
+        ? String(
+            Math.min(
+              100,
+              Math.floor(((get("viewport").clientWidth - 20) / 1200) * 100),
+            ),
+          )
+        : selected === "puzzle"
+          ? "60"
+          : "35";
+      scaleTree();
+      renderSteps();
+    }
+    function renderSteps() {
+      const item = data[selected];
+      get("steps").replaceChildren();
+      const total = selected === "workforce" ? 28 : item.path.length - 1;
+      step = Math.max(0, Math.min(step, total));
+      get("step-count").textContent = `Step ${step} / ${total}`;
+      get("previous").disabled = step === 0;
+      get("next").disabled = step === total;
+      get("solution-title").textContent =
+        selected === "workforce"
+          ? "Verified cyclic schedule · 28 decisions"
+          : "Verified shortest solution";
+      get("solution-note").textContent =
+        selected === "workforce"
+          ? "The tree above stops at depth 3. This playback shows the independently validated full solution branch found by chronological DFS, not the full order of attempted branches. The full trace records 1,948 attempts and is saved in workforce_dfs_trace.json."
+          : "Unit-cost BFS proves shortest length for these specified instances: 3 blank moves / 11 river crossings. Playback follows the returned path, not every expanded node.";
+      if (selected === "workforce") {
+        const schedule = item.solutionStates[step];
+        for (let week = 0; week < 4; week++) {
+          const panel = document.createElement("div");
+          panel.className = "step";
+          const label = document.createElement("strong");
+          label.textContent = "Sequence week " + (week + 1);
+          panel.append(label, document.createElement("br"));
+          for (let day = 0; day < 7; day++) {
+            const index = week * 7 + day;
+            const cell = document.createElement("span");
+            cell.className =
+              "shift" + (index >= schedule.length ? " pending" : "");
+            cell.textContent = schedule[index] || "?";
+            cell.title = `X[${index}]`;
+            panel.append(cell);
+          }
+          get("steps").append(panel);
+        }
+      } else {
+        const node = item.nodes[item.path[step]];
+        const panel = document.createElement("div");
+        panel.className = "step";
+        const label = document.createElement("strong");
+        label.textContent = `#${node.id} · ${step === 0 ? "Start" : node.action}`;
+        const board = document.createElement("pre");
+        if (selected === "puzzle")
+          board.textContent = [0, 3, 6]
+            .map((i) =>
+              node.state
+                .slice(i, i + 3)
+                .map((n) => n || "·")
+                .join("  "),
+            )
+            .join("\n");
+        else {
+          const [m, c, b] = node.state;
+          board.textContent = `Left bank:  ${m}M  ${c}C\nRight bank: ${3 - m}M  ${3 - c}C\nBoat: ${b}`;
+        }
+        panel.append(label, board);
+        get("steps").append(panel);
+      }
+    }
+    document.querySelectorAll("[data-problem]").forEach((button) =>
+      button.addEventListener("click", () => {
+        selected = button.dataset.problem;
+        render();
+      }),
+    );
+    get("tree-previous").addEventListener("click", () => {
+      if (page > 0) {
+        page--;
+        render(false);
+      }
+    });
+    get("tree-next").addEventListener("click", () => {
+      if (page < data[selected].pages.length - 1) {
+        page++;
+        render(false);
+      }
+    });
+    get("page-select").addEventListener("change", () => {
+      page = Number(get("page-select").value);
+      render(false);
+    });
+    get("compact-view").addEventListener("click", () => {
+      view = "compact";
+      render(false);
+    });
+    get("full-view").addEventListener("click", () => {
+      view = "full";
+      render(false);
+    });
+    get("zoom").addEventListener("input", scaleTree);
+    get("fit").addEventListener("click", () => {
+      const width = Number(
+        get("drawing").querySelector("svg").getAttribute("width"),
+      );
+      get("zoom").value = Math.max(
+        10,
+        Math.min(
+          150,
+          Math.floor(((get("viewport").clientWidth - 20) / width) * 100),
+        ),
+      );
+      scaleTree();
+    });
+    get("previous").addEventListener("click", () => {
+      step--;
+      renderSteps();
+    });
+    get("next").addEventListener("click", () => {
+      step++;
+      renderSteps();
+    });
+    get("all").addEventListener("click", () => {
+      step = selected === "workforce" ? 28 : data[selected].path.length - 1;
+      renderSteps();
+    });
+    render();
+  </script>
+</html>

@@ -1,0 +1,45 @@
+{
+  "puzzle": {
+    "file": "8-puzzle-report.pdf",
+    "pages": 22,
+    "statistics": {
+      "node": 23,
+      "visited": 17,
+      "discovered": 30,
+      "attempts": 44,
+      "invalid": 0,
+      "repeats": 15,
+      "frontier": 13,
+      "goal": true
+    },
+    "solutionDepth": 3
+  },
+  "river": {
+    "file": "missionaries-and-cannibals-report.pdf",
+    "pages": 28,
+    "statistics": {
+      "node": 65,
+      "visited": 15,
+      "discovered": 15,
+      "attempts": 70,
+      "invalid": 40,
+      "repeats": 16,
+      "frontier": 0,
+      "goal": true
+    },
+    "solutionDepth": 11
+  },
+  "workforce": {
+    "file": "rotating-workforce-report.pdf",
+    "pages": 31,
+    "statistics": {
+      "visited": 498,
+      "discovered": 498,
+      "attempts": 1948,
+      "invalid": 1451,
+      "backtracks": 1920,
+      "depth": 28
+    },
+    "solutionDepth": 28
+  }
+}

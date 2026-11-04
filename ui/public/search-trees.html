@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Search Trees · Uninformed Search Techniques</title><link rel="stylesheet" href="/search-trees.css"><script type="module" src="/search-trees.js"></script></head>
+<body><main>
+<a class="back" href="/">← Back to solver experiments</a>
+<header><span class="eyebrow">ASSIGNMENT 1 / SEARCH TREES</span><h1>Follow the search, step by step.</h1><p>Keep the full tree in view as new branches appear. These are recorded Python search results.</p></header>
+<section class="toolbar" aria-label="Tree controls">
+<label>Problem<select id="problem"><option value="puzzle">8-Puzzle</option><option value="river">Missionaries and Cannibals</option><option value="workforce">Rotating Workforce Scheduling</option></select></label>
+<label>View<select id="mode"><option value="search">Search progression</option><option value="solution">Final solution route</option></select></label>
+<button id="png" disabled title="Go to the last step to download the complete tree">Download final tree PNG</button>
+<a id="pdf" class="button" download>Download PDF</a>
+</section>
+<section class="panel"><div class="stepbar"><button id="previous">← Previous</button><button id="play">Play</button><input id="step" type="range" min="0" max="1" value="0" aria-label="Search step"><strong id="counter"></strong><button id="next">Next →</button></div>
+<p id="explanation" role="status" aria-live="polite">Loading recorded search…</p>
+<div class="tools"><button id="out" aria-label="Zoom out">−</button><button id="fit">Fit tree</button><button id="in" aria-label="Zoom in">+</button><span>Scroll or drag to move the tree. Click a node to inspect it.</span></div>
+<div id="viewport" tabindex="0" aria-label="Search tree, scroll to explore"><svg id="tree" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Accumulated search tree"></svg></div>
+<div class="legend"><span class="green">● Solution route</span><span class="blue">● Current node / new branches</span><span class="red">● Invalid attempt</span><span class="yellow">● Repeated state</span><span>Dashed: queued state</span></div></section>
+<section class="details"><article class="panel"><h2>Selected node</h2><pre id="node">Select a node in the tree.</pre></article><article class="panel"><h2>Model and search</h2><p id="model"></p><p id="statistics"></p><p id="scope" class="muted"></p></article></section>
+</main></body></html>

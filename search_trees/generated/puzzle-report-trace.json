@@ -1,0 +1,1197 @@
+{
+  "nodes": [
+    {
+      "id": 0,
+      "state": [
+        1,
+        2,
+        3,
+        0,
+        4,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": null,
+      "action": "Start",
+      "depth": 0,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "id": 1,
+      "state": [
+        0,
+        2,
+        3,
+        1,
+        4,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 0,
+      "action": "Up",
+      "depth": 1,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        4,
+        5
+      ]
+    },
+    {
+      "id": 2,
+      "state": [
+        1,
+        2,
+        3,
+        7,
+        4,
+        6,
+        0,
+        5,
+        8
+      ],
+      "parent": 0,
+      "action": "Down",
+      "depth": 1,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": 3,
+      "state": [
+        1,
+        2,
+        3,
+        4,
+        0,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 0,
+      "action": "Right",
+      "depth": 1,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    {
+      "id": 4,
+      "state": [
+        1,
+        2,
+        3,
+        0,
+        4,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 1,
+      "action": "Down",
+      "depth": 2,
+      "kind": "repeat",
+      "reason": "Already discovered at node #0",
+      "reference": 0,
+      "children": []
+    },
+    {
+      "id": 5,
+      "state": [
+        2,
+        0,
+        3,
+        1,
+        4,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 1,
+      "action": "Right",
+      "depth": 2,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": 6,
+      "state": [
+        1,
+        2,
+        3,
+        0,
+        4,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 2,
+      "action": "Up",
+      "depth": 2,
+      "kind": "repeat",
+      "reason": "Already discovered at node #0",
+      "reference": 0,
+      "children": []
+    },
+    {
+      "id": 7,
+      "state": [
+        1,
+        2,
+        3,
+        7,
+        4,
+        6,
+        5,
+        0,
+        8
+      ],
+      "parent": 2,
+      "action": "Right",
+      "depth": 2,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        15,
+        16,
+        17
+      ]
+    },
+    {
+      "id": 8,
+      "state": [
+        1,
+        0,
+        3,
+        4,
+        2,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 3,
+      "action": "Up",
+      "depth": 2,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        18,
+        19,
+        20
+      ]
+    },
+    {
+      "id": 9,
+      "state": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        0,
+        8
+      ],
+      "parent": 3,
+      "action": "Down",
+      "depth": 2,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        21,
+        22,
+        23
+      ]
+    },
+    {
+      "id": 10,
+      "state": [
+        1,
+        2,
+        3,
+        0,
+        4,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 3,
+      "action": "Left",
+      "depth": 2,
+      "kind": "repeat",
+      "reason": "Already discovered at node #0",
+      "reference": 0,
+      "children": []
+    },
+    {
+      "id": 11,
+      "state": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        0,
+        7,
+        5,
+        8
+      ],
+      "parent": 3,
+      "action": "Right",
+      "depth": 2,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        24,
+        25,
+        26
+      ]
+    },
+    {
+      "id": 12,
+      "state": [
+        2,
+        4,
+        3,
+        1,
+        0,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 5,
+      "action": "Down",
+      "depth": 3,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        27,
+        28,
+        29,
+        30
+      ]
+    },
+    {
+      "id": 13,
+      "state": [
+        0,
+        2,
+        3,
+        1,
+        4,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 5,
+      "action": "Left",
+      "depth": 3,
+      "kind": "repeat",
+      "reason": "Already discovered at node #1",
+      "reference": 1,
+      "children": []
+    },
+    {
+      "id": 14,
+      "state": [
+        2,
+        3,
+        0,
+        1,
+        4,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 5,
+      "action": "Right",
+      "depth": 3,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        31,
+        32
+      ]
+    },
+    {
+      "id": 15,
+      "state": [
+        1,
+        2,
+        3,
+        7,
+        0,
+        6,
+        5,
+        4,
+        8
+      ],
+      "parent": 7,
+      "action": "Up",
+      "depth": 3,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        33,
+        34,
+        35,
+        36
+      ]
+    },
+    {
+      "id": 16,
+      "state": [
+        1,
+        2,
+        3,
+        7,
+        4,
+        6,
+        0,
+        5,
+        8
+      ],
+      "parent": 7,
+      "action": "Left",
+      "depth": 3,
+      "kind": "repeat",
+      "reason": "Already discovered at node #2",
+      "reference": 2,
+      "children": []
+    },
+    {
+      "id": 17,
+      "state": [
+        1,
+        2,
+        3,
+        7,
+        4,
+        6,
+        5,
+        8,
+        0
+      ],
+      "parent": 7,
+      "action": "Right",
+      "depth": 3,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        37,
+        38
+      ]
+    },
+    {
+      "id": 18,
+      "state": [
+        1,
+        2,
+        3,
+        4,
+        0,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 8,
+      "action": "Down",
+      "depth": 3,
+      "kind": "repeat",
+      "reason": "Already discovered at node #3",
+      "reference": 3,
+      "children": []
+    },
+    {
+      "id": 19,
+      "state": [
+        0,
+        1,
+        3,
+        4,
+        2,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 8,
+      "action": "Left",
+      "depth": 3,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        39,
+        40
+      ]
+    },
+    {
+      "id": 20,
+      "state": [
+        1,
+        3,
+        0,
+        4,
+        2,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 8,
+      "action": "Right",
+      "depth": 3,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        41,
+        42
+      ]
+    },
+    {
+      "id": 21,
+      "state": [
+        1,
+        2,
+        3,
+        4,
+        0,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 9,
+      "action": "Up",
+      "depth": 3,
+      "kind": "repeat",
+      "reason": "Already discovered at node #3",
+      "reference": 3,
+      "children": []
+    },
+    {
+      "id": 22,
+      "state": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        0,
+        7,
+        8
+      ],
+      "parent": 9,
+      "action": "Left",
+      "depth": 3,
+      "kind": "expanded",
+      "reason": "",
+      "reference": null,
+      "children": [
+        43,
+        44
+      ]
+    },
+    {
+      "id": 23,
+      "state": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        0
+      ],
+      "parent": 9,
+      "action": "Right",
+      "depth": 3,
+      "kind": "goal",
+      "reason": "",
+      "reference": null,
+      "children": []
+    },
+    {
+      "id": 24,
+      "state": [
+        1,
+        2,
+        0,
+        4,
+        6,
+        3,
+        7,
+        5,
+        8
+      ],
+      "parent": 11,
+      "action": "Up",
+      "depth": 3,
+      "kind": "frontier",
+      "reason": "",
+      "reference": null,
+      "children": []
+    },
+    {
+      "id": 25,
+      "state": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        8,
+        7,
+        5,
+        0
+      ],
+      "parent": 11,
+      "action": "Down",
+      "depth": 3,
+      "kind": "frontier",
+      "reason": "",
+      "reference": null,
+      "children": []
+    },
+    {
+      "id": 26,
+      "state": [
+        1,
+        2,
+        3,
+        4,
+        0,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 11,
+      "action": "Left",
+      "depth": 3,
+      "kind": "repeat",
+      "reason": "Already discovered at node #3",
+      "reference": 3,
+      "children": []
+    },
+    {
+      "id": 27,
+      "state": [
+        2,
+        0,
+        3,
+        1,
+        4,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 12,
+      "action": "Up",
+      "depth": 4,
+      "kind": "repeat",
+      "reason": "Already discovered at node #5",
+      "reference": 5,
+      "children": []
+    },
+    {
+      "id": 28,
+      "state": [
+        2,
+        4,
+        3,
+        1,
+        5,
+        6,
+        7,
+        0,
+        8
+      ],
+      "parent": 12,
+      "action": "Down",
+      "depth": 4,
+      "kind": "frontier",
+      "reason": "",
+      "reference": null,
+      "children": []
+    },
+    {
+      "id": 29,
+      "state": [
+        2,
+        4,
+        3,
+        0,
+        1,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 12,
+      "action": "Left",
+      "depth": 4,
+      "kind": "frontier",
+      "reason": "",
+      "reference": null,
+      "children": []
+    },
+    {
+      "id": 30,
+      "state": [
+        2,
+        4,
+        3,
+        1,
+        6,
+        0,
+        7,
+        5,
+        8
+      ],
+      "parent": 12,
+      "action": "Right",
+      "depth": 4,
+      "kind": "frontier",
+      "reason": "",
+      "reference": null,
+      "children": []
+    },
+    {
+      "id": 31,
+      "state": [
+        2,
+        3,
+        6,
+        1,
+        4,
+        0,
+        7,
+        5,
+        8
+      ],
+      "parent": 14,
+      "action": "Down",
+      "depth": 4,
+      "kind": "frontier",
+      "reason": "",
+      "reference": null,
+      "children": []
+    },
+    {
+      "id": 32,
+      "state": [
+        2,
+        0,
+        3,
+        1,
+        4,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 14,
+      "action": "Left",
+      "depth": 4,
+      "kind": "repeat",
+      "reason": "Already discovered at node #5",
+      "reference": 5,
+      "children": []
+    },
+    {
+      "id": 33,
+      "state": [
+        1,
+        0,
+        3,
+        7,
+        2,
+        6,
+        5,
+        4,
+        8
+      ],
+      "parent": 15,
+      "action": "Up",
+      "depth": 4,
+      "kind": "frontier",
+      "reason": "",
+      "reference": null,
+      "children": []
+    },
+    {
+      "id": 34,
+      "state": [
+        1,
+        2,
+        3,
+        7,
+        4,
+        6,
+        5,
+        0,
+        8
+      ],
+      "parent": 15,
+      "action": "Down",
+      "depth": 4,
+      "kind": "repeat",
+      "reason": "Already discovered at node #7",
+      "reference": 7,
+      "children": []
+    },
+    {
+      "id": 35,
+      "state": [
+        1,
+        2,
+        3,
+        0,
+        7,
+        6,
+        5,
+        4,
+        8
+      ],
+      "parent": 15,
+      "action": "Left",
+      "depth": 4,
+      "kind": "frontier",
+      "reason": "",
+      "reference": null,
+      "children": []
+    },
+    {
+      "id": 36,
+      "state": [
+        1,
+        2,
+        3,
+        7,
+        6,
+        0,
+        5,
+        4,
+        8
+      ],
+      "parent": 15,
+      "action": "Right",
+      "depth": 4,
+      "kind": "frontier",
+      "reason": "",
+      "reference": null,
+      "children": []
+    },
+    {
+      "id": 37,
+      "state": [
+        1,
+        2,
+        3,
+        7,
+        4,
+        0,
+        5,
+        8,
+        6
+      ],
+      "parent": 17,
+      "action": "Up",
+      "depth": 4,
+      "kind": "frontier",
+      "reason": "",
+      "reference": null,
+      "children": []
+    },
+    {
+      "id": 38,
+      "state": [
+        1,
+        2,
+        3,
+        7,
+        4,
+        6,
+        5,
+        0,
+        8
+      ],
+      "parent": 17,
+      "action": "Left",
+      "depth": 4,
+      "kind": "repeat",
+      "reason": "Already discovered at node #7",
+      "reference": 7,
+      "children": []
+    },
+    {
+      "id": 39,
+      "state": [
+        4,
+        1,
+        3,
+        0,
+        2,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 19,
+      "action": "Down",
+      "depth": 4,
+      "kind": "frontier",
+      "reason": "",
+      "reference": null,
+      "children": []
+    },
+    {
+      "id": 40,
+      "state": [
+        1,
+        0,
+        3,
+        4,
+        2,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 19,
+      "action": "Right",
+      "depth": 4,
+      "kind": "repeat",
+      "reason": "Already discovered at node #8",
+      "reference": 8,
+      "children": []
+    },
+    {
+      "id": 41,
+      "state": [
+        1,
+        3,
+        6,
+        4,
+        2,
+        0,
+        7,
+        5,
+        8
+      ],
+      "parent": 20,
+      "action": "Down",
+      "depth": 4,
+      "kind": "frontier",
+      "reason": "",
+      "reference": null,
+      "children": []
+    },
+    {
+      "id": 42,
+      "state": [
+        1,
+        0,
+        3,
+        4,
+        2,
+        6,
+        7,
+        5,
+        8
+      ],
+      "parent": 20,
+      "action": "Left",
+      "depth": 4,
+      "kind": "repeat",
+      "reason": "Already discovered at node #8",
+      "reference": 8,
+      "children": []
+    },
+    {
+      "id": 43,
+      "state": [
+        1,
+        2,
+        3,
+        0,
+        5,
+        6,
+        4,
+        7,
+        8
+      ],
+      "parent": 22,
+      "action": "Up",
+      "depth": 4,
+      "kind": "frontier",
+      "reason": "",
+      "reference": null,
+      "children": []
+    },
+    {
+      "id": 44,
+      "state": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        0,
+        8
+      ],
+      "parent": 22,
+      "action": "Right",
+      "depth": 4,
+      "kind": "repeat",
+      "reason": "Already discovered at node #9",
+      "reference": 9,
+      "children": []
+    }
+  ],
+  "path": [
+    0,
+    3,
+    9,
+    23
+  ],
+  "events": [
+    {
+      "node": 0,
+      "visited": 1,
+      "discovered": 4,
+      "attempts": 3,
+      "invalid": 0,
+      "repeats": 0,
+      "frontier": 3,
+      "goal": false
+    },
+    {
+      "node": 1,
+      "visited": 2,
+      "discovered": 5,
+      "attempts": 5,
+      "invalid": 0,
+      "repeats": 1,
+      "frontier": 3,
+      "goal": false
+    },
+    {
+      "node": 2,
+      "visited": 3,
+      "discovered": 6,
+      "attempts": 7,
+      "invalid": 0,
+      "repeats": 2,
+      "frontier": 3,
+      "goal": false
+    },
+    {
+      "node": 3,
+      "visited": 4,
+      "discovered": 9,
+      "attempts": 11,
+      "invalid": 0,
+      "repeats": 3,
+      "frontier": 5,
+      "goal": false
+    },
+    {
+      "node": 5,
+      "visited": 5,
+      "discovered": 11,
+      "attempts": 14,
+      "invalid": 0,
+      "repeats": 4,
+      "frontier": 6,
+      "goal": false
+    },
+    {
+      "node": 7,
+      "visited": 6,
+      "discovered": 13,
+      "attempts": 17,
+      "invalid": 0,
+      "repeats": 5,
+      "frontier": 7,
+      "goal": false
+    },
+    {
+      "node": 8,
+      "visited": 7,
+      "discovered": 15,
+      "attempts": 20,
+      "invalid": 0,
+      "repeats": 6,
+      "frontier": 8,
+      "goal": false
+    },
+    {
+      "node": 9,
+      "visited": 8,
+      "discovered": 17,
+      "attempts": 23,
+      "invalid": 0,
+      "repeats": 7,
+      "frontier": 9,
+      "goal": false
+    },
+    {
+      "node": 11,
+      "visited": 9,
+      "discovered": 19,
+      "attempts": 26,
+      "invalid": 0,
+      "repeats": 8,
+      "frontier": 10,
+      "goal": false
+    },
+    {
+      "node": 12,
+      "visited": 10,
+      "discovered": 22,
+      "attempts": 30,
+      "invalid": 0,
+      "repeats": 9,
+      "frontier": 12,
+      "goal": false
+    },
+    {
+      "node": 14,
+      "visited": 11,
+      "discovered": 23,
+      "attempts": 32,
+      "invalid": 0,
+      "repeats": 10,
+      "frontier": 12,
+      "goal": false
+    },
+    {
+      "node": 15,
+      "visited": 12,
+      "discovered": 26,
+      "attempts": 36,
+      "invalid": 0,
+      "repeats": 11,
+      "frontier": 14,
+      "goal": false
+    },
+    {
+      "node": 17,
+      "visited": 13,
+      "discovered": 27,
+      "attempts": 38,
+      "invalid": 0,
+      "repeats": 12,
+      "frontier": 14,
+      "goal": false
+    },
+    {
+      "node": 19,
+      "visited": 14,
+      "discovered": 28,
+      "attempts": 40,
+      "invalid": 0,
+      "repeats": 13,
+      "frontier": 14,
+      "goal": false
+    },
+    {
+      "node": 20,
+      "visited": 15,
+      "discovered": 29,
+      "attempts": 42,
+      "invalid": 0,
+      "repeats": 14,
+      "frontier": 14,
+      "goal": false
+    },
+    {
+      "node": 22,
+      "visited": 16,
+      "discovered": 30,
+      "attempts": 44,
+      "invalid": 0,
+      "repeats": 15,
+      "frontier": 14,
+      "goal": false
+    },
+    {
+      "node": 23,
+      "visited": 17,
+      "discovered": 30,
+      "attempts": 44,
+      "invalid": 0,
+      "repeats": 15,
+      "frontier": 13,
+      "goal": true
+    }
+  ],
+  "summary": {
+    "node": 23,
+    "visited": 17,
+    "discovered": 30,
+    "attempts": 44,
+    "invalid": 0,
+    "repeats": 15,
+    "frontier": 13,
+    "goal": true
+  }
+}
