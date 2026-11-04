@@ -1,0 +1,55 @@
+Landscape analysis only; DFS is not called or modified.
+Players: 32, groups: 8, group size: 4, weeks: 8, samples: 1000, seed: 42
+Weekly partitions A: approximately 10^(19.772961)
+Candidate schedules A^w: approximately 10^(158.183690)
+With first week fixed A^(w-1): approximately 10^(138.410729)
+These counts still include repeated-pair violations.
+Penalty = pair occurrences beyond the first occurrence.
+Minimum penalty: 88
+Mean penalty: 107.785000
+Maximum penalty: 132
+Zero-penalty samples: 0
+Penalty distribution (penalty: number of samples):
+  88: 1
+  89: 1
+  90: 1
+  91: 2
+  92: 1
+  93: 8
+  94: 7
+  95: 6
+  96: 17
+  97: 15
+  98: 21
+  99: 28
+  100: 38
+  101: 36
+  102: 42
+  103: 40
+  104: 49
+  105: 58
+  106: 60
+  107: 51
+  108: 57
+  109: 58
+  110: 69
+  111: 36
+  112: 60
+  113: 43
+  114: 29
+  115: 40
+  116: 27
+  117: 29
+  118: 20
+  119: 13
+  120: 7
+  121: 9
+  122: 6
+  123: 5
+  124: 5
+  125: 2
+  126: 1
+  127: 1
+  132: 1
+One random swap per sample: improved=387, unchanged=232, worsened=381
+Sampling does not prove existence, nonexistence or optimality.

@@ -1,0 +1,36 @@
+Sudoku landscape; search is not run.
+Samples: 1000, seed: 42
+Candidate space: product of k_row!, approximately 10^(23.3815)
+Penalty: extra occurrences in columns and 3x3 boxes; clues and row permutations are preserved.
+Minimum penalty: 34
+Mean penalty: 46.386000
+Maximum penalty: 58
+Zero-penalty samples: 0
+Penalty distribution (penalty: number of samples):
+  34: 2
+  35: 4
+  36: 7
+  37: 7
+  38: 12
+  39: 24
+  40: 26
+  41: 43
+  42: 56
+  43: 73
+  44: 81
+  45: 82
+  46: 93
+  47: 91
+  48: 88
+  49: 71
+  50: 63
+  51: 61
+  52: 41
+  53: 31
+  54: 17
+  55: 11
+  56: 5
+  57: 8
+  58: 3
+One random swap per sample: improved=394, unchanged=243, worsened=363
+Sampling does not prove existence, nonexistence or optimality.

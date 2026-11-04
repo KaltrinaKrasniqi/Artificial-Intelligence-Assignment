@@ -1,0 +1,21 @@
+Latin Square landscape; search is not run.
+Size: 5, samples: 1000, seed: 42
+Candidate space: ((n-1)!)^(n-1), approximately 10^(5.52084)
+Penalty: extra occurrences in columns; rows and fixed cells are preserved.
+Minimum penalty: 2
+Mean penalty: 6.374000
+Maximum penalty: 11
+Zero-penalty samples: 0
+Penalty distribution (penalty: number of samples):
+  2: 9
+  3: 21
+  4: 92
+  5: 160
+  6: 251
+  7: 223
+  8: 167
+  9: 51
+  10: 23
+  11: 3
+One random swap per sample: improved=359, unchanged=307, worsened=334
+Sampling does not prove existence, nonexistence or optimality.
