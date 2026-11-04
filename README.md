@@ -1,4 +1,4 @@
-# Artificial Intelligence Assignment — Uninformed Search
+# Uninformed Search Techniques
 
 This project implements three constraint problems in C++17. Each problem is described below using the same five parts: model, representation, objective function, evaluation function and landscape.
 
@@ -232,11 +232,11 @@ Find **any complete board satisfying all constraints**. All valid completions ar
 Landscape candidates preserve clues and make every row a permutation of `1..9`. The penalty counts repeated digits in columns and boxes:
 
 $$
-E(S) = \sum_{c=1}^{9} \left(9-\operatorname{distinct}(C_c)\right)
-     + \sum_{b=1}^{9} \left(9-\operatorname{distinct}(B_b)\right)
+E(S) = \sum_{c=1}^{9} \left(9-d(C_c)\right)
+     + \sum_{b=1}^{9} \left(9-d(B_b)\right)
 $$
 
-Here $C_c$ is column $c$, $B_b$ is box $b$, and $\operatorname{distinct}(U)$ counts the different digits in unit $U$.
+Here $C_c$ is column $c$, $B_b$ is box $b$, and $d(U)$ counts the different digits in unit $U$.
 
 Each extra occurrence after a digit's first occurrence in a unit contributes one violation. For example, a column with eight distinct digits contributes one. On this candidate space, zero means a valid solution because rows and clues are already correct.
 
@@ -302,10 +302,10 @@ IDDFS tries depth limits $0,1,\ldots,(n-1)^2$. Each iteration runs the same dept
 Landscape candidates already have valid row permutations and the fixed first row and column. Define:
 
 $$
-E(S) = \sum_{c=1}^{n} \left(n-\operatorname{distinct}(C_c)\right)
+E(S) = \sum_{c=1}^{n} \left(n-d(C_c)\right)
 $$
 
-Here $C_c$ is column $c$, and $\operatorname{distinct}(C_c)$ counts its different values.
+Here $C_c$ is column $c$, and $d(C_c)$ counts its different values.
 
 For example, a column with $n-1$ distinct values contributes one violation. Zero is a valid solution on this space. `validate()` independently checks the final square. The penalty does not rank IDDFS branches.
 
