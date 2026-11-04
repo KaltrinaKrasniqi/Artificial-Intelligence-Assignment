@@ -1,7 +1,8 @@
 #pragma once
+#include <array>
+#include <map>
 #include "common.hpp"
-using Board = array<int,81>;
-vector<int> candidates(const Board&, int);
-Status sudoku(Board&, bool, size_t, Metrics&);
-Board parseBoard(const string&);
-extern const map<string,string> examples;
+using Board = std::array<int, 81>;
+Status sudoku(Board &, bool, std::size_t, Metrics &);
+Board parseBoard(const std::string &);
+extern const std::map<std::string, std::string> examples;
